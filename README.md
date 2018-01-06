@@ -1,7 +1,7 @@
 # Onion architecture sample
 
 ## Onion architecture
-[Onion architecture|https://adrianbontea.com/2014/03/10/cone-architecture/] is all about starting with the core of a system and adding layers on top of it.
+[Onion architecture](http://adrianbontea.com/2014/03/10/cone-architecture/) is all about starting with the core of a system and adding layers on top of it.
 
 Moreover, I'd say that we can have multiple onions in a system, each with its own responsibilities. For example, core logic can be separated from user interface logic, and neither should be dependent of each other (except that some data they share - passed using different DTOs, though - at runtime). Of course, in this case you will also need to have a controller layer on top of the onions, to bootstrap the application. On the other hand, the infrastructural-dependent implementations for the marginal onions (like the data store and the user interface) can be again separated from their interfaces, and only the app controller will depend on them.
 Furthermore, if we have different target platforms to support, we can share the same concepts (logic and data models) in the core onion copies that we'll create for the app controllers defined for different technologies. And for each onion, actually only the contracts are static: the implementations can be different, for example if during maintainance we will need to swift from Entity Framework and SQL Server database as data storage, for example, to using plain XML files it will not be a pain to do it. Or, another example, if we decide to move storage to the client side, it will be very simple to just switch to not using a REST API but a local storage folder instead.
